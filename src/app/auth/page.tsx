@@ -9,10 +9,11 @@ import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { object, InferType } from "yup";
 import * as yup from "yup";
+import Button from "@mui/material/Button";
+import Navbar from "../components/Navbar";
 import styles from "./Auth.module.scss";
-import Link from "next/link";
 
-export default function Login() {
+export default function page() {
   const [showPassword, setShowPassword] = useState(false);
 
   let registerationSchema = object({
@@ -20,7 +21,7 @@ export default function Login() {
     password: yup.string().required("password is required"),
   });
 
-  type RegistrationData = InferType<typeof registerationSchema>;
+  type RegistrationData = InterType<typeof registerationSchema>;
 
   const {
     control,
@@ -41,13 +42,14 @@ export default function Login() {
 
   const onSubmit: SubmitHandler<RegistrationData> = (data) => {
     console.log(data);
-    reset();
+    resize();
   };
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   return (
     <>
+      <Navbar />
       <div className={styles.container}>
         <h1>Login</h1>
         <form
@@ -58,16 +60,9 @@ export default function Login() {
           <Controller
             name="email"
             control={control}
-            render={({ field }) => (
-              <TextField
-                label="email"
-                variant="outlined"
-                size="small"
-                error={Boolean(errors.email)}
-                helperText={errors.email?.message}
-                {...field}
-              />
-            )}
+            render={({ field }) => {
+              <span></span>;
+            }}
           />
           <Controller
             name="password"
@@ -83,11 +78,7 @@ export default function Login() {
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        edge="end"
-                      >
+                      <IconButton>
                         {showPassword ? <VisibilityOff /> : <Visibility />}
                       </IconButton>
                     </InputAdornment>
@@ -97,13 +88,7 @@ export default function Login() {
               />
             )}
           />
-          <button type="submit" className={styles.button}>
-            Sign In
-          </button>
-          <div className={styles.newUser}>
-            <p>New User?</p>
-            <Link href="/signup">Sign Up</Link>
-          </div>
+          <Button type="submit">Sign In</Button>
         </form>
       </div>
     </>
