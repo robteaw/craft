@@ -1,16 +1,16 @@
-"use client";
-import React, { useState } from "react";
+import React from "react";
 import Loader from "../components/Loader/index";
+import Navbar from "../components/Navbar";
+import styles from "./Sewing.module.scss";
 
 export default function Sewing() {
-  const [count, setCount] = useState<number>(1);
-
   return (
-    <div>
-      <h1>Sewing is {count}</h1>
-      <button onClick={() => setCount((prev) => prev + 1)}>+</button>
-      <button onClick={() => setCount((prev) => prev - 1)}>-</button>
+    <div className={styles.container}>
       <Loader />
+      <Navbar />
+      <h1>Sewing</h1>
+      <h3>Andy Barclay</h3>
+      <h3>Harry Potter</h3>
     </div>
   );
 }
