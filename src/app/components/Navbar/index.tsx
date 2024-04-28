@@ -12,9 +12,6 @@ export default function Navbar() {
         <li>
           <Link href="/sewing">Sewing</Link>
         </li>
-        <li>
-          <Link href="/crotchet">Crotchet</Link>
-        </li>
       </ul>
     </div>
   );
